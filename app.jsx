@@ -11,7 +11,7 @@ import { createClient } from "@supabase/supabase-js";
   do Supabase antes de usar este app.
 */
 const SUPABASE_URL = "https://SEU-PROJETO.supabase.co";
-const SUPABASE_ANON_KEY = "SUA-ANON-KEY-AQUI";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2b3dieWdkbXZyb3FxeHVvY3lkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzOTU4NTQsImV4cCI6MjEwNDk3MTg1NH0.n46Hzqet8CLy3dC4HFAdBUgIJ9EPATzo2ioNlFLscCo";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
