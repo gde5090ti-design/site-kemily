@@ -1,3 +1,4 @@
+cat > /home/claude/App_raw.jsx << 'ENDOFFILE'
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { createClient } from "@supabase/supabase-js";
 
@@ -10,8 +11,8 @@ import { createClient } from "@supabase/supabase-js";
   Depois rode o SQL do arquivo schema.sql (enviado junto) no SQL Editor
   do Supabase antes de usar este app.
 */
-const SUPABASE_URL = "https://tvowbygdmvroqqxuocyd.supabase.co/rest/v1/";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR2b3dieWdkbXZyb3FxeHVvY3lkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzOTU4NTQsImV4cCI6MjEwNDk3MTg1NH0.n46Hzqet8CLy3dC4HFAdBUgIJ9EPATzo2ioNlFLscCo";
+const SUPABASE_URL = "https://SEU-PROJETO.supabase.co";
+const SUPABASE_ANON_KEY = "SUA-ANON-KEY-AQUI";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -22,11 +23,11 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const AREAS = [
   "Ator / Atriz",
   "Cantor(a)",
-  "Dançarino(a)",
+  "DanÃ§arino(a)",
   "Modelo",
-  "Fotógrafo(a)",
+  "FotÃ³grafo(a)",
   "Ilustrador(a) / Artista visual",
-  "Músico(a) / Instrumentista",
+  "MÃºsico(a) / Instrumentista",
   "Diretor(a)",
   "Produtor(a)",
   "Grafiteiro(a) / Muralista",
@@ -38,7 +39,7 @@ function mensagemErroSupabase(erro) {
   if (!erro) return "Algo deu errado. Tente novamente.";
   const m = erro.message || "";
   if (m.includes("already registered") || m.includes("already exists")) {
-    return "Já existe uma conta com esse e-mail.";
+    return "JÃ¡ existe uma conta com esse e-mail.";
   }
   if (m.includes("Invalid login credentials")) {
     return "E-mail ou senha incorretos.";
@@ -49,7 +50,7 @@ function mensagemErroSupabase(erro) {
   return m || "Algo deu errado. Tente novamente.";
 }
 
-/* Carrega o perfil (artista ou empresa) associado a um usuário autenticado */
+/* Carrega o perfil (artista ou empresa) associado a um usuÃ¡rio autenticado */
 async function carregarPerfilDoUsuario(user) {
   if (!user) return null;
 
@@ -112,7 +113,6 @@ const GlobalStyle = () => (
     a{color:inherit;}
     button{font-family:'Sora',sans-serif;cursor:pointer;}
 
-    /* ---------- header ---------- */
     .header{
       position:sticky;top:0;z-index:40;
       background:rgba(247,238,228,0.92);
@@ -146,7 +146,6 @@ const GlobalStyle = () => (
     .btn-ghost:hover{background:var(--terra);color:var(--cream-2);}
     .btn-link{background:none;border:none;color:var(--terracotta-deep);font-weight:700;font-size:14px;padding:0;text-decoration:underline;text-underline-offset:3px;}
 
-    /* ---------- hero ---------- */
     .hero{padding:76px 0 88px;}
     .hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
     .hero h1{font-size:48px;line-height:1.06;font-weight:600;color:var(--terra);margin:14px 0 20px;letter-spacing:-0.01em;}
@@ -163,7 +162,6 @@ const GlobalStyle = () => (
     .pin .name{font-family:'Fraunces',serif;font-size:20px;margin-top:20px;line-height:1.1;}
     .pin .role{font-size:11px;margin-top:6px;opacity:0.85;font-family:'IBM Plex Mono',monospace;}
 
-    /* ---------- seções gerais ---------- */
     .section{padding:64px 0;}
     .section.alt{background:var(--blush);}
     .valueprops{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:34px;}
@@ -171,7 +169,6 @@ const GlobalStyle = () => (
     .vp h3{font-size:19px;margin:10px 0 8px;color:var(--terra);}
     .vp p{color:var(--coffee);font-size:14.5px;margin:0;}
 
-    /* ---------- forms ---------- */
     .card{
       background:var(--cream-2);border:1px solid var(--line);border-radius:18px;
       padding:36px;
@@ -196,7 +193,6 @@ const GlobalStyle = () => (
     .errorbox{background:#fbe7e0;border:1px solid var(--terracotta);color:var(--terracotta-deep);padding:10px 14px;border-radius:10px;font-size:13.5px;margin-bottom:16px;}
     .okbox{background:#e9f2e6;border:1px solid #6b8f5c;color:#3d5c33;padding:10px 14px;border-radius:10px;font-size:13.5px;margin-bottom:16px;}
 
-    /* ---------- diretório ---------- */
     .dir-layout{display:grid;grid-template-columns:250px 1fr;gap:36px;align-items:start;}
     .filters{position:sticky;top:96px;background:var(--cream-2);border:1px solid var(--line);border-radius:16px;padding:22px;}
     .filters h4{margin:0 0 14px;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--terra);font-family:'IBM Plex Mono',monospace;}
@@ -213,7 +209,6 @@ const GlobalStyle = () => (
     .ficha .bio{font-size:13.5px;color:var(--coffee);margin:0;}
     .empty{padding:50px 0;text-align:center;color:var(--coffee);}
 
-    /* ---------- perfil ---------- */
     .profile-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;}
     .profile-top .name{font-size:40px;margin:6px 0 8px;color:var(--terra);}
     .profile-meta{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--coffee);letter-spacing:0.03em;}
@@ -227,7 +222,6 @@ const GlobalStyle = () => (
     .pf-card h5{margin:8px 0 6px;font-family:'Fraunces',serif;font-size:17px;color:var(--terra);}
     .pf-card p{font-size:13px;color:var(--coffee);margin:0 0 8px;}
 
-    /* ---------- vagas ---------- */
     .job-card{background:var(--cream-2);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px;}
     .job-card .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
     .job-card h3{margin:0;font-size:20px;color:var(--terra);}
@@ -256,16 +250,12 @@ const GlobalStyle = () => (
   `}</style>
 );
 
-/* ------------------------------------------------------------------ */
-/*  App                                                                 */
-/* ------------------------------------------------------------------ */
-
 export default function App() {
   const [view, setView] = useState("home");
   const [carregando, setCarregando] = useState(true);
   const [artistas, setArtistas] = useState([]);
   const [vagas, setVagas] = useState([]);
-  const [usuario, setUsuario] = useState(null); // {tipo:'artista'|'empresa', ...dados}
+  const [usuario, setUsuario] = useState(null);
   const [perfilAberto, setPerfilAberto] = useState(null);
   const [msg, setMsg] = useState(null);
   const [sessaoCarregada, setSessaoCarregada] = useState(false);
@@ -285,7 +275,6 @@ export default function App() {
     carregarTudo();
   }, [carregarTudo]);
 
-  // Mantém a sessão ao recarregar a página e reage a login/logout
   useEffect(() => {
     let ativo = true;
 
@@ -388,16 +377,12 @@ export default function App() {
 
       <footer className="footer">
         <div className="wrap">
-          <p>ATERRO usa Supabase para autenticação e armazenamento dos dados. Nenhuma senha é guardada em texto puro — isso é feito pelo Supabase Auth.</p>
+          <p>ATERRO usa Supabase para autenticaÃ§Ã£o e armazenamento dos dados. Nenhuma senha Ã© guardada em texto puro â€” isso Ã© feito pelo Supabase Auth.</p>
         </div>
       </footer>
     </div>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Header                                                              */
-/* ------------------------------------------------------------------ */
 
 function Header({ view, irPara, usuario, onSair }) {
   return (
@@ -407,7 +392,7 @@ function Header({ view, irPara, usuario, onSair }) {
           <span className="dot" />ATERRO
         </div>
         <nav className="nav">
-          <button className={`navbtn ${view === "diretorio" ? "active" : ""}`} onClick={() => irPara("diretorio")}>Diretório</button>
+          <button className={`navbtn ${view === "diretorio" ? "active" : ""}`} onClick={() => irPara("diretorio")}>DiretÃ³rio</button>
           <button className={`navbtn ${view === "vagas" ? "active" : ""}`} onClick={() => irPara("vagas")}>Vagas</button>
           {!usuario && (
             <>
@@ -433,17 +418,13 @@ function Header({ view, irPara, usuario, onSair }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Home                                                                */
-/* ------------------------------------------------------------------ */
-
 const CORES_PIN = ["var(--terracotta)", "var(--coffee)", "var(--ochre)", "var(--terra)"];
 const PINS = [
   { top: "0%", left: "6%", rot: "-6deg", nome: "Ayo M.", papel: "FOTOGRAFIA" },
-  { top: "6%", left: "46%", rot: "4deg", nome: "Dandara S.", papel: "DANÇA" },
-  { top: "40%", left: "2%", rot: "3deg", nome: "Kaique R.", papel: "MÚSICA" },
-  { top: "46%", left: "44%", rot: "-4deg", nome: "Ìyá B.", papel: "ARTES VISUAIS" },
-  { top: "26%", left: "70%", rot: "-3deg", nome: "Preto N.", papel: "ATUAÇÃO" },
+  { top: "6%", left: "46%", rot: "4deg", nome: "Dandara S.", papel: "DANÃ‡A" },
+  { top: "40%", left: "2%", rot: "3deg", nome: "Kaique R.", papel: "MÃšSICA" },
+  { top: "46%", left: "44%", rot: "-4deg", nome: "ÃŒyÃ¡ B.", papel: "ARTES VISUAIS" },
+  { top: "26%", left: "70%", rot: "-3deg", nome: "Preto N.", papel: "ATUAÃ‡ÃƒO" },
 ];
 
 function Home({ irPara, artistas }) {
@@ -454,12 +435,12 @@ function Home({ irPara, artistas }) {
       <section className="hero">
         <div className="wrap hero-grid">
           <div>
-            <span className="eyebrow">Vitrine de talentos negros e periféricos</span>
-            <h1>Talento que já existe. Visibilidade que faltava.</h1>
+            <span className="eyebrow">Vitrine de talentos negros e perifÃ©ricos</span>
+            <h1>Talento que jÃ¡ existe. Visibilidade que faltava.</h1>
             <p className="lead">
-              Um espaço para artistas negros e periféricos publicarem portfólio, trajetória
-              e contatos — e para marcas e agências encontrarem quem procuram, com filtros
-              diretos e sem intermediário.
+              Um espaÃ§o para artistas negros e perifÃ©ricos publicarem portfÃ³lio, trajetÃ³ria
+              e contatos â€” e para marcas e agÃªncias encontrarem quem procuram, com filtros
+              diretos e sem intermediÃ¡rio.
             </p>
             <div className="hero-ctas">
               <button className="btn-primary" onClick={() => irPara("diretorio")}>Ver artistas</button>
@@ -493,15 +474,15 @@ function Home({ irPara, artistas }) {
           <div className="valueprops">
             <div className="vp">
               <h3>Publique seu trabalho</h3>
-              <p>Monte um perfil com sua área, sua trajetória e as peças que representam melhor o seu trabalho — sem precisar de site próprio.</p>
+              <p>Monte um perfil com sua Ã¡rea, sua trajetÃ³ria e as peÃ§as que representam melhor o seu trabalho â€” sem precisar de site prÃ³prio.</p>
             </div>
             <div className="vp">
               <h3>Seja encontrado direto</h3>
-              <p>Marcas e produtoras filtram por área e cidade e chegam até seu contato sem passar por agência ou intermediário.</p>
+              <p>Marcas e produtoras filtram por Ã¡rea e cidade e chegam atÃ© seu contato sem passar por agÃªncia ou intermediÃ¡rio.</p>
             </div>
             <div className="vp">
               <h3>Veja as vagas abertas</h3>
-              <p>Empresas publicam oportunidades reais — casting, ilustração, trilha, produção — com o que esperam de quem vai topar o trabalho.</p>
+              <p>Empresas publicam oportunidades reais â€” casting, ilustraÃ§Ã£o, trilha, produÃ§Ã£o â€” com o que esperam de quem vai topar o trabalho.</p>
             </div>
           </div>
         </div>
@@ -510,13 +491,13 @@ function Home({ irPara, artistas }) {
       {destaques.length > 0 && (
         <section className="section alt">
           <div className="wrap">
-            <span className="eyebrow">Quem está no ATERRO</span>
+            <span className="eyebrow">Quem estÃ¡ no ATERRO</span>
             <div className="grid-artists" style={{ marginTop: 28 }}>
               {destaques.map((a) => (
                 <div key={a.id} className="ficha" onClick={() => irPara("diretorio")}>
                   <span className="tag">{a.area}</span>
                   <h3 className="name">{a.nome}</h3>
-                  <div className="meta">{a.cidade || "Localização não informada"}</div>
+                  <div className="meta">{a.cidade || "LocalizaÃ§Ã£o nÃ£o informada"}</div>
                   <hr />
                   <p className="bio">{a.bio}</p>
                 </div>
@@ -528,10 +509,6 @@ function Home({ irPara, artistas }) {
     </>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Diretório                                                           */
-/* ------------------------------------------------------------------ */
 
 function Directory({ carregando, artistas, onAbrirPerfil }) {
   const [busca, setBusca] = useState("");
@@ -555,7 +532,7 @@ function Directory({ carregando, artistas, onAbrirPerfil }) {
   return (
     <section className="section">
       <div className="wrap">
-        <span className="eyebrow">Diretório</span>
+        <span className="eyebrow">DiretÃ³rio</span>
         <h2 style={{ margin: "10px 0 28px", color: "var(--terra)" }}>Encontre quem procura</h2>
 
         <div className="dir-layout">
@@ -567,7 +544,7 @@ function Directory({ carregando, artistas, onAbrirPerfil }) {
               onChange={(e) => setBusca(e.target.value)}
               style={{ width: "100%", padding: "9px 11px", borderRadius: 8, border: "1.5px solid var(--line)", marginBottom: 20, fontFamily: "Sora, sans-serif" }}
             />
-            <h4>Área</h4>
+            <h4>Ãrea</h4>
             <select
               value={area}
               onChange={(e) => setArea(e.target.value)}
@@ -592,7 +569,7 @@ function Directory({ carregando, artistas, onAbrirPerfil }) {
           </aside>
 
           <div>
-            {carregando && artistas.length === 0 && <div className="loading">Carregando artistas…</div>}
+            {carregando && artistas.length === 0 && <div className="loading">Carregando artistasâ€¦</div>}
 
             {!carregando && filtrados.length === 0 && (
               <div className="empty">Nenhum artista encontrado com esses filtros.</div>
@@ -603,7 +580,7 @@ function Directory({ carregando, artistas, onAbrirPerfil }) {
                 <div key={a.id} className="ficha" onClick={() => onAbrirPerfil(a)}>
                   <span className="tag">{a.area}</span>
                   <h3 className="name">{a.nome}</h3>
-                  <div className="meta">{a.cidade || "Localização não informada"}</div>
+                  <div className="meta">{a.cidade || "LocalizaÃ§Ã£o nÃ£o informada"}</div>
                   <hr />
                   <p className="bio">{a.bio}</p>
                 </div>
@@ -616,23 +593,19 @@ function Directory({ carregando, artistas, onAbrirPerfil }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Perfil do artista                                                   */
-/* ------------------------------------------------------------------ */
-
 function PerfilArtista({ artista, onVoltar, dono }) {
   const portfolio = Array.isArray(artista.portfolio) ? artista.portfolio : [];
 
   return (
     <section className="section">
       <div className="wrap">
-        <button className="btn-link" onClick={onVoltar}>← Voltar</button>
+        <button className="btn-link" onClick={onVoltar}>â† Voltar</button>
 
         <div className="profile-top" style={{ marginTop: 20 }}>
           <div>
             <span className="eyebrow">{artista.area}</span>
             <h2 className="name serif">{artista.nome}</h2>
-            <div className="profile-meta">{artista.cidade || "Localização não informada"}</div>
+            <div className="profile-meta">{artista.cidade || "LocalizaÃ§Ã£o nÃ£o informada"}</div>
           </div>
         </div>
 
@@ -640,7 +613,7 @@ function PerfilArtista({ artista, onVoltar, dono }) {
 
         {dono && (
           <div className="okbox" style={{ maxWidth: 620 }}>
-            Este é o seu perfil público. É o que empresas veem quando encontram você no diretório.
+            Este Ã© o seu perfil pÃºblico. Ã‰ o que empresas veem quando encontram vocÃª no diretÃ³rio.
           </div>
         )}
 
@@ -663,7 +636,7 @@ function PerfilArtista({ artista, onVoltar, dono }) {
         {portfolio.length > 0 && (
           <>
             <h4 style={{ marginTop: 32, marginBottom: 4, color: "var(--terra)", fontFamily: "IBM Plex Mono, monospace", fontSize: 12.5, textTransform: "uppercase", letterSpacing: "0.08em" }}>
-              Portfólio
+              PortfÃ³lio
             </h4>
             <div className="portfolio-strip">
               {portfolio.map((p, i) => (
@@ -681,10 +654,6 @@ function PerfilArtista({ artista, onVoltar, dono }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Vagas                                                                */
-/* ------------------------------------------------------------------ */
-
 function Vagas({ carregando, vagas }) {
   return (
     <section className="section">
@@ -692,7 +661,7 @@ function Vagas({ carregando, vagas }) {
         <span className="eyebrow">Oportunidades</span>
         <h2 style={{ margin: "10px 0 28px", color: "var(--terra)" }}>Vagas publicadas por empresas</h2>
 
-        {carregando && vagas.length === 0 && <div className="loading">Carregando vagas…</div>}
+        {carregando && vagas.length === 0 && <div className="loading">Carregando vagasâ€¦</div>}
         {!carregando && vagas.length === 0 && <div className="empty">Nenhuma vaga publicada por enquanto.</div>}
 
         {vagas.map((v) => (
@@ -726,45 +695,37 @@ function Vagas({ carregando, vagas }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Escolha de cadastro                                                  */
-/* ------------------------------------------------------------------ */
-
 function EscolhaCadastro({ irPara }) {
   return (
     <section className="section">
       <div className="wrap" style={{ maxWidth: 760 }}>
         <span className="eyebrow">Cadastro</span>
-        <h2 style={{ margin: "10px 0 30px", color: "var(--terra)" }}>Como você quer entrar no ATERRO?</h2>
+        <h2 style={{ margin: "10px 0 30px", color: "var(--terra)" }}>Como vocÃª quer entrar no ATERRO?</h2>
 
         <div className="formgrid">
           <div className="card">
             <h3 className="serif" style={{ margin: "0 0 8px", color: "var(--terra)" }}>Sou artista</h3>
             <p style={{ color: "var(--coffee)", fontSize: 14, marginBottom: 20 }}>
-              Publique seu portfólio, sua área de atuação e seus contatos para ser encontrado por empresas e produtoras.
+              Publique seu portfÃ³lio, sua Ã¡rea de atuaÃ§Ã£o e seus contatos para ser encontrado por empresas e produtoras.
             </p>
             <button className="btn-primary" onClick={() => irPara("cadastroArtista")}>Criar perfil de artista</button>
           </div>
           <div className="card">
             <h3 className="serif" style={{ margin: "0 0 8px", color: "var(--terra)" }}>Sou empresa ou marca</h3>
             <p style={{ color: "var(--coffee)", fontSize: 14, marginBottom: 20 }}>
-              Publique vagas e busque artistas negros e periféricos direto no diretório, sem intermediário.
+              Publique vagas e busque artistas negros e perifÃ©ricos direto no diretÃ³rio, sem intermediÃ¡rio.
             </p>
             <button className="btn-primary" onClick={() => irPara("cadastroEmpresa")}>Criar conta de empresa</button>
           </div>
         </div>
 
         <p style={{ marginTop: 26, fontSize: 14, color: "var(--coffee)" }}>
-          Já tem conta? <button className="btn-link" onClick={() => irPara("login")}>Entrar</button>
+          JÃ¡ tem conta? <button className="btn-link" onClick={() => irPara("login")}>Entrar</button>
         </p>
       </div>
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Cadastro de artista                                                  */
-/* ------------------------------------------------------------------ */
 
 function CadastroArtista({ irPara, onCadastrado }) {
   const [nome, setNome] = useState("");
@@ -842,7 +803,7 @@ function CadastroArtista({ irPara, onCadastrado }) {
   return (
     <section className="section">
       <div className="wrap" style={{ maxWidth: 640 }}>
-        <button className="btn-link" onClick={() => irPara("escolhaCadastro")}>← Voltar</button>
+        <button className="btn-link" onClick={() => irPara("escolhaCadastro")}>â† Voltar</button>
         <h2 style={{ margin: "18px 0 24px", color: "var(--terra)" }}>Criar perfil de artista</h2>
 
         <div className="card">
@@ -856,7 +817,7 @@ function CadastroArtista({ irPara, onCadastrado }) {
                 <input value={nome} onChange={(e) => setNome(e.target.value)} required />
               </div>
               <div className="field">
-                <label>Área</label>
+                <label>Ãrea</label>
                 <select value={area} onChange={(e) => setArea(e.target.value)}>
                   {AREAS.map((a) => (
                     <option key={a} value={a}>{a}</option>
@@ -895,28 +856,28 @@ function CadastroArtista({ irPara, onCadastrado }) {
 
             <div className="field">
               <label>Bio</label>
-              <textarea value={bio} onChange={(e) => setBio(e.target.value)} placeholder="Conte sua trajetória em poucas linhas." />
+              <textarea value={bio} onChange={(e) => setBio(e.target.value)} placeholder="Conte sua trajetÃ³ria em poucas linhas." />
             </div>
 
-            <label style={{ fontSize: 12.5, fontWeight: 700, color: "var(--terra)" }}>Portfólio (opcional)</label>
+            <label style={{ fontSize: 12.5, fontWeight: 700, color: "var(--terra)" }}>PortfÃ³lio (opcional)</label>
             {portfolio.map((p, i) => (
               <div key={i} className="portfolio-draft-item">
                 <div className="field" style={{ marginBottom: 0 }}>
-                  <label>Título</label>
+                  <label>TÃtulo</label>
                   <input value={p.titulo} onChange={(e) => atualizarPortfolio(i, "titulo", e.target.value)} />
                 </div>
                 <div className="field" style={{ marginBottom: 0 }}>
-                  <label>Descrição</label>
+                  <label>DescriÃ§Ã£o</label>
                   <input value={p.descricao} onChange={(e) => atualizarPortfolio(i, "descricao", e.target.value)} />
                 </div>
                 <button type="button" className="iconbtn" onClick={() => removerPortfolio(i)}>Remover</button>
               </div>
             ))}
-            <button type="button" className="iconbtn" onClick={adicionarPortfolio} style={{ marginBottom: 20 }}>+ Adicionar item ao portfólio</button>
+            <button type="button" className="iconbtn" onClick={adicionarPortfolio} style={{ marginBottom: 20 }}>+ Adicionar item ao portfÃ³lio</button>
 
             <div>
               <button className="btn-primary" type="submit" disabled={enviando}>
-                {enviando ? "Criando…" : "Criar meu perfil"}
+                {enviando ? "Criandoâ€¦" : "Criar meu perfil"}
               </button>
             </div>
           </form>
@@ -925,10 +886,6 @@ function CadastroArtista({ irPara, onCadastrado }) {
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Cadastro de empresa                                                  */
-/* ------------------------------------------------------------------ */
 
 function CadastroEmpresa({ irPara, onCadastrado }) {
   const [nome, setNome] = useState("");
@@ -984,7 +941,7 @@ function CadastroEmpresa({ irPara, onCadastrado }) {
   return (
     <section className="section">
       <div className="wrap" style={{ maxWidth: 560 }}>
-        <button className="btn-link" onClick={() => irPara("escolhaCadastro")}>← Voltar</button>
+        <button className="btn-link" onClick={() => irPara("escolhaCadastro")}>â† Voltar</button>
         <h2 style={{ margin: "18px 0 24px", color: "var(--terra)" }}>Criar conta de empresa</h2>
 
         <div className="card">
@@ -1026,7 +983,7 @@ function CadastroEmpresa({ irPara, onCadastrado }) {
             </div>
 
             <button className="btn-primary" type="submit" disabled={enviando}>
-              {enviando ? "Criando…" : "Criar conta"}
+              {enviando ? "Criandoâ€¦" : "Criar conta"}
             </button>
           </form>
         </div>
@@ -1034,10 +991,6 @@ function CadastroEmpresa({ irPara, onCadastrado }) {
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Login                                                                */
-/* ------------------------------------------------------------------ */
 
 function Login({ irPara, onLogin }) {
   const [email, setEmail] = useState("");
@@ -1062,7 +1015,7 @@ function Login({ irPara, onLogin }) {
     setEnviando(false);
 
     if (!perfil) {
-      setErro("Não encontramos um perfil de artista ou empresa para essa conta.");
+      setErro("NÃ£o encontramos um perfil de artista ou empresa para essa conta.");
       return;
     }
 
@@ -1087,22 +1040,18 @@ function Login({ irPara, onLogin }) {
               <input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} required />
             </div>
             <button className="btn-primary" type="submit" disabled={enviando}>
-              {enviando ? "Entrando…" : "Entrar"}
+              {enviando ? "Entrandoâ€¦" : "Entrar"}
             </button>
           </form>
         </div>
 
         <p style={{ marginTop: 20, fontSize: 14, color: "var(--coffee)" }}>
-          Ainda não tem conta? <button className="btn-link" onClick={() => irPara("escolhaCadastro")}>Cadastre-se</button>
+          Ainda nÃ£o tem conta? <button className="btn-link" onClick={() => irPara("escolhaCadastro")}>Cadastre-se</button>
         </p>
       </div>
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Painel da empresa                                                    */
-/* ------------------------------------------------------------------ */
 
 function PainelEmpresa({ usuario, vagas, onPublicada }) {
   const [titulo, setTitulo] = useState("");
@@ -1120,7 +1069,7 @@ function PainelEmpresa({ usuario, vagas, onPublicada }) {
     setAviso(null);
 
     if (!titulo) {
-      setErro("Dê um título para a vaga.");
+      setErro("DÃª um tÃtulo para a vaga.");
       return;
     }
 
@@ -1163,12 +1112,12 @@ function PainelEmpresa({ usuario, vagas, onPublicada }) {
             {aviso && <div className="okbox">{aviso}</div>}
             <form onSubmit={publicar}>
               <div className="field">
-                <label>Título da vaga</label>
+                <label>TÃtulo da vaga</label>
                 <input value={titulo} onChange={(e) => setTitulo(e.target.value)} required />
               </div>
               <div className="formgrid">
                 <div className="field">
-                  <label>Área</label>
+                  <label>Ãrea</label>
                   <select value={area} onChange={(e) => setArea(e.target.value)}>
                     <option value="">Selecione</option>
                     {AREAS.map((a) => (
@@ -1182,22 +1131,22 @@ function PainelEmpresa({ usuario, vagas, onPublicada }) {
                 </div>
               </div>
               <div className="field">
-                <label>Descrição</label>
+                <label>DescriÃ§Ã£o</label>
                 <textarea value={descricao} onChange={(e) => setDescricao(e.target.value)} />
               </div>
               <div className="field">
-                <label>O que vocês esperam de quem topar</label>
+                <label>O que vocÃªs esperam de quem topar</label>
                 <textarea value={requisitos} onChange={(e) => setRequisitos(e.target.value)} />
               </div>
               <button className="btn-primary" type="submit" disabled={enviando}>
-                {enviando ? "Publicando…" : "Publicar vaga"}
+                {enviando ? "Publicandoâ€¦" : "Publicar vaga"}
               </button>
             </form>
           </div>
 
           <div>
             <h3 className="serif" style={{ margin: "0 0 16px", color: "var(--terra)" }}>Suas vagas publicadas</h3>
-            {vagas.length === 0 && <div className="empty">Você ainda não publicou nenhuma vaga.</div>}
+            {vagas.length === 0 && <div className="empty">VocÃª ainda nÃ£o publicou nenhuma vaga.</div>}
             {vagas.map((v) => (
               <div key={v.id} className="job-card">
                 <div className="top">
@@ -1216,3 +1165,5 @@ function PainelEmpresa({ usuario, vagas, onPublicada }) {
     </section>
   );
 }
+ENDOFFILE
+wc -l /home/claude/App_raw.jsx
